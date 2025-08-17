@@ -1,0 +1,21 @@
+{% block body %}
+<div class="mx-auto max-w-[900px]">
+  {% if user %}
+    <h1 class="text-3xl my-6">User {{ user.email }}</h1>
+
+    {% if user.profilePicFilename %}
+      <p>
+        <img
+          src="{{ asset('uploads/user/' ~ user.profilePicFilename) }}"
+          alt="{{ user.email }}"
+          class="rounded-full max-h-[150px]"
+        />
+      </p>
+    {% endif %}
+  {% else %}
+    <p>Aucun utilisateur chargé.</p>
+  {% endif %}
+
+  <div>{{ form(form) }}</div>
+</div>
+{% endblock %}

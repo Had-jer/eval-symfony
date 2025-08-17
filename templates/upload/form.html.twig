@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Upload d’image interstellaire{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+            color: #e0e1dd;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 2rem;
+        }
+
+        .upload-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 170, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #90e0ef;
+            margin-bottom: 2rem;
+        }
+
+        .btn-space {
+            background: linear-gradient(to right, #0077b6, #00b4d8);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            transition: 0.3s ease;
+        }
+
+        .btn-space:hover {
+            background: linear-gradient(to right, #00b4d8, #0077b6);
+            box-shadow: 0 0 15px #00b4d8;
+        }
+
+        .alert-success {
+            background-color: #2a9d8f;
+            border: none;
+            color: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+        }
+
+        label {
+            color: #ffffffb3;
+        }
+
+        input[type="file"] {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #ffffff22;
+            padding: 0.5rem;
+            color: #fff;
+            width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="upload-container">
+        <h1>🌌 Upload ta photo stellaire</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+        {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+            {{ form_row(form.profilePic) }}
+            {{ form_row(form.Enregistrer, {'attr': {'class': 'btn-space'}}) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des planètes{% endblock %}
+
+{% block body %}
+<style>
+body {
+    background-color: #fdf6e3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #4a2c2a;
+    margin-top: 50px;
+    font-size: 2.5em;
+    letter-spacing: 1px;
+}
+
+.planetes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.planet-card {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px;
+    width: 220px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.planet-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.planet-card h2 {
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    color: #2c3e50;
+}
+
+.planet-card a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.planet-card a:hover {
+    color: #1d6fa5;
+}
+p{
+    text-align: center;
+}
+</style>
+
+<h1>🌍 Liste des planètes du système solaire 🪐</h1>
+<p> APPUEZ SUR LES DEUX PLANETES ➡️ TERRE ET MARS ⬅️ POUR AFFICHER LEURS SATELLITE</p>
+
+<div class="planetes-container">
+    {% for planete in planetes %}
+        <div class="planet-card">
+            <h2>
+                <a href="{{ path('planete_show', {'id': planete.id}) }}">
+                    {{ planete.name }}
+                </a>
+            </h2>
+            <p>Surface : {{ planete.surface }} km²</p>
+        </div>
+    {% else %}
+        <p>Aucune planète trouvée.</p>
+    {% endfor %}
+</div>
+{% endblock %}

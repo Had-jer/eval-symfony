@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de {{ planete.name }}{% endblock %}
+
+{% block body %}
+<style>
+body {
+    background-color: #fdf6e3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #4a2c2a;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: #ecf0f1;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color: #2c3e50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.no-satellites {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #1d6fa5;
+}
+</style>
+
+<div class="container">
+    <h1>Satellites de {{ planete.name }}</h1>
+
+    {% if satellites is not empty %}
+        <ul>
+            {% for satellite in satellites %}
+                <li>
+                    <span>{{ satellite.name }}</span>
+                    <span>{{ satellite.diameter }} km</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-satellites"> Pour Cette planète j'ai pas fais de satellite.</p>
+    {% endif %}
+
+    <a href="{{ path('app_index') }}" class="back-link">← Retour à la liste des planètes</a>
+</div>
+{% endblock %}

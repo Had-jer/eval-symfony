@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Inscription à la newsletter
+{% endblock %}
+
+{% block body %}
+<style>
+body {
+    background-color: antiquewhite;
+    font-family: Arial, sans-serif;
+}
+
+.newsletter-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.newsletter-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    width: 400px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.newsletter-container h2 {
+    color: brown;
+    margin-bottom: 20px;
+}
+
+.newsletter-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.newsletter-container input[type="email"] {
+    padding: 10px;
+    border: 2px solid violet;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.newsletter-container button {
+    padding: 12px;
+    background-color: violet;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.newsletter-container button:hover {
+    background-color: #7A238A;
+}
+</style>
+
+<div class="newsletter-wrapper">
+  <div class="newsletter-container">
+    <h2>Inscription à la newsletter</h2>
+    {{ form_start(newsletter_form) }}
+      {{ form_row(newsletter_form.email, {
+        attr: {
+          placeholder: 'Votre adresse e-mail'
+        }
+      }) }}
+      <button type="submit">S'inscrire</button>
+    {{ form_end(newsletter_form) }}
+  </div>
+</div>
+{% endblock %}
